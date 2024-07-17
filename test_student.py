@@ -2,22 +2,25 @@ import unittest
 from student import Student
 
 class TestStudent(unittest.TestCase):
+
+    def setUp(self):
+        print('setUP')
+        self.student = Student('Joe', 'Bloggs')
+
+    def tearDown(self):
+        print('tearDown')
     
     def test_full_name(self):
-        student = Student('Joe', 'Bloggs')
-
-        self.assertEqual(student.full_name, 'Joe Bloggs')
+        self.assertEqual(self.student.full_name, 'Joe Bloggs')
 
     def test_alert_santa(self):
-        student = Student('Joe', 'Bloggs')
-        student.alert_santa()
+        self.student.alert_santa()
 
-        self.assertTrue(student.naughty_list)
+        self.assertTrue(self.student.naughty_list)
     
     def test_email(self):
-        student = Student('Joe', 'Bloggs')
 
-        self.assertEqual(student.email, 'joe.bloggs@email.com')
+        self.assertEqual(self.student.email, 'joe.bloggs@email.com')
 
 
 if __name__== '__main__':
